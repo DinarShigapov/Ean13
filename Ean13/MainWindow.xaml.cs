@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -282,10 +283,26 @@ namespace Ean13
             }
             catch
             {
-
             }
         }
 
+        private void txtBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+            {
+                e.Handled = true;
+            }
+            if (txtBox.Text.Length == 1 && e.Key == Key.Back)
+            {
+                txtBox.Text = String.Empty;
+                Load("0000000000000");
+            }
+        }
 
+        private void txtBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (Regex.IsMatch(e.Text, @"[0-9]") == false)
+                e.Handled = true;
+        }
     }
 }

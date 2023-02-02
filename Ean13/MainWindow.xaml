@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ean13"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="EAN-13" Height="450" Width="800">
     <Grid>
         <StackPanel Background="White">
             <StackPanel.Resources>
@@ -28,10 +28,12 @@
                      VerticalContentAlignment="Center"
                      Margin="0 40 0 60"
                      FontSize="15"
-                      FontWeight="DemiBold"
+                     FontWeight="DemiBold"
                      SpellCheck.IsEnabled="True" 
                      TextChanged="txtBox_TextChanged"
-                     />
+                     MaxLength="13"
+                     PreviewKeyDown="txtBox_PreviewKeyDown"
+                     PreviewTextInput="txtBox_PreviewTextInput"/>
             <Border Height="252" Width="349"
                 BorderBrush="Black"
                 BorderThickness="1">
