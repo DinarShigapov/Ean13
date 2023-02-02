@@ -162,7 +162,7 @@ namespace Ean13
                     Height = 207.0,
                     Width = (numGroupNum[i] == "A") ? 3.0 * dictA[Convert.ToInt32(nums[i + 1]) - 48][3] : 3.0 * dictB[Convert.ToInt32(nums[i + 1]) - 48][3],
                     Margin = new Thickness(rec3.Margin.Left + rec3.Width, 10, 0, 0),
-                    Fill = System.Windows.Media.Brushes.White,
+                    Fill = System.Windows.Media.Brushes.Black,
                     SnapsToDevicePixels = true
                 };
 
@@ -183,13 +183,82 @@ namespace Ean13
             }
 
             Rectangle rect3 = copyRec(localRec);
+            rect3.Margin = new Thickness(rect3.Margin.Left + 6.0, 10, 0, 0);
+            rect3.Width = 4.0;
+            rect3.Height = 222.0;
+
+            Rectangle rect4 = copyRec(rect3);
+            rect3.Margin = new Thickness(rect4.Margin.Left + 3.0, 10, 0, 0);
+            rect3.Width = 4.0;
+
+            barcodeCan.Children.Add(rect3);
+            barcodeCan.Children.Add(rect4);
+
+            localRec = copyRec(rect4);
+            for (int i = 7; i < 13; i++)
             {
-                Height = 222.0,
-                Width = 2.0,
-                Margin = new Thickness(33, 10, 0, 0),
-                Fill = Brushes.Black,
-                SnapsToDevicePixels = true
-            };
+                Rectangle rec1 = new Rectangle()
+                {
+                    Height = 207.0,
+                    Width = 3.0 * dictC[Convert.ToInt32(nums[i]) - 48][0],
+                    Margin = new Thickness(localRec.Margin.Left + localRec.Width, 10, 0, 0),
+                    Fill = System.Windows.Media.Brushes.Black,
+                    SnapsToDevicePixels = true
+                };
+
+                Rectangle rec2 = new Rectangle()
+                {
+                    Height = 207.0,
+                    Width = 3.0 * dictC[Convert.ToInt32(nums[i]) - 48][1],
+                    Margin = new Thickness(rec1.Margin.Left + localRec.Width, 10, 0, 0),
+                    Fill = System.Windows.Media.Brushes.White,
+                    SnapsToDevicePixels = true
+                };
+
+                Rectangle rec3 = new Rectangle()
+                {
+                    Height = 207.0,
+                    Width = 3.0 * dictC[Convert.ToInt32(nums[i]) - 48][2],
+                    Margin = new Thickness(rec2.Margin.Left + localRec.Width, 10, 0, 0),
+                    Fill = System.Windows.Media.Brushes.Black,
+                    SnapsToDevicePixels = true
+                };
+
+                Rectangle rec4 = new Rectangle()
+                {
+                    Height = 207.0,
+                    Width = 3.0 * dictC[Convert.ToInt32(nums[i]) - 48][3],
+                    Margin = new Thickness(rec3.Margin.Left + localRec.Width, 10, 0, 0),
+                    Fill = System.Windows.Media.Brushes.White,
+                    SnapsToDevicePixels = true
+                };
+
+                Label lbl = new Label()
+                {
+                    Content = nums[i],
+                    FontSize = 24,
+                    FontWeight = FontWeights.Bold,
+                    Margin = new Thickness(rec1.Margin.Left, 207, 0, 0)
+                };
+
+                localRec = rec4;
+                barcodeCan.Children.Add(lbl);
+                barcodeCan.Children.Add(rec1);
+                barcodeCan.Children.Add(rec2);
+                barcodeCan.Children.Add(rec3);
+                barcodeCan.Children.Add(rec4);
+            }
+            Rectangle rect5 = copyRec(localRec);
+            rect5.Width = 4.0;
+            rect5.Height = 220.0;
+
+            Rectangle rect6 = copyRec(rect5);
+            rect6.Margin = new Thickness(rect6.Margin.Left + 3.0, 10, 0, 0);
+            rect6.Width = 4.0;
+
+            barcodeCan.Children.Add(rect5);
+            barcodeCan.Children.Add(rect6);
+
         }
 
         private Rectangle copyRec(Rectangle rec)
@@ -201,8 +270,8 @@ namespace Ean13
                 Margin = new Thickness(rec.Margin.Left + rec.Width, 10, 0, 0),
                 Fill = System.Windows.Media.Brushes.Black,
                 SnapsToDevicePixels = true
-             
-            }
+
+            };
         }
 
         private void txtBox_TextChanged(object sender, TextChangedEventArgs e)
