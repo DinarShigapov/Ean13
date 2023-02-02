@@ -96,7 +96,7 @@ namespace Ean13
                 SnapsToDevicePixels = true
             };
 
-            Rectangle rec2 = new Rectangle()
+            Rectangle rect2 = new Rectangle()
             {
                 Height = 222.0,
                 Width = 2.0,
@@ -124,8 +124,85 @@ namespace Ean13
 
             barcodeCan.Children.Add(lb1);
             barcodeCan.Children.Add(rect);
-            barcodeCan.Children.Add(rec2);
+            barcodeCan.Children.Add(rect2);
             barcodeCan.Children.Add(rect1_2);
+
+            Rectangle localRec = rect1_2;
+            for (int i = 0; i < 6; i++)
+            {
+                Rectangle rec1 = new Rectangle()
+                {
+                    Height = 207.0,
+                    Width = (numGroupNum[i] == "A") ? 3.0 * dictA[Convert.ToInt32(nums[i + 1]) - 48][0] : 3.0 * dictB[Convert.ToInt32(nums[i + 1]) - 48][0],
+                    Margin = new Thickness(localRec.Margin.Left + localRec.Width, 10, 0, 0),
+                    Fill = System.Windows.Media.Brushes.White,
+                    SnapsToDevicePixels = true
+                };
+
+                Rectangle rec2 = new Rectangle()
+                {
+                    Height = 207.0,
+                    Width = (numGroupNum[i] == "A") ? 3.0 * dictA[Convert.ToInt32(nums[i + 1]) - 48][1] : 3.0 * dictB[Convert.ToInt32(nums[i + 1]) - 48][1],
+                    Margin = new Thickness(rec1.Margin.Left + rec1.Width, 10, 0, 0),
+                    Fill = System.Windows.Media.Brushes.Black,
+                    SnapsToDevicePixels = true
+                };
+
+                Rectangle rec3 = new Rectangle()
+                {
+                    Height = 207.0,
+                    Width = (numGroupNum[i] == "A") ? 3.0 * dictA[Convert.ToInt32(nums[i + 1]) - 48][2] : 3.0 * dictB[Convert.ToInt32(nums[i + 1]) - 48][2],
+                    Margin = new Thickness(rec2.Margin.Left + rec2.Width, 10, 0, 0),
+                    Fill = System.Windows.Media.Brushes.White,
+                    SnapsToDevicePixels = true
+                };
+
+                Rectangle rec4 = new Rectangle()
+                {
+                    Height = 207.0,
+                    Width = (numGroupNum[i] == "A") ? 3.0 * dictA[Convert.ToInt32(nums[i + 1]) - 48][3] : 3.0 * dictB[Convert.ToInt32(nums[i + 1]) - 48][3],
+                    Margin = new Thickness(rec3.Margin.Left + rec3.Width, 10, 0, 0),
+                    Fill = System.Windows.Media.Brushes.White,
+                    SnapsToDevicePixels = true
+                };
+
+                Label lbl = new Label()
+                {
+                    Content = nums[i + 1],
+                    FontSize = 24,
+                    FontWeight = FontWeights.Bold,
+                    Margin = new Thickness(rec1.Margin.Left, 207, 0, 0)
+                };
+
+                localRec = rec4;
+                barcodeCan.Children.Add(lbl);
+                barcodeCan.Children.Add(rec1);
+                barcodeCan.Children.Add(rec2);
+                barcodeCan.Children.Add(rec3);
+                barcodeCan.Children.Add(rec4);
+            }
+
+            Rectangle rect3 = copyRec(localRec);
+            {
+                Height = 222.0,
+                Width = 2.0,
+                Margin = new Thickness(33, 10, 0, 0),
+                Fill = Brushes.Black,
+                SnapsToDevicePixels = true
+            };
+        }
+
+        private Rectangle copyRec(Rectangle rec)
+        {
+            return new Rectangle()
+            {
+                Height = Math.Floor(rec.Height),
+                Width = Math.Floor(rec.Width),
+                Margin = new Thickness(rec.Margin.Left + rec.Width, 10, 0, 0),
+                Fill = System.Windows.Media.Brushes.Black,
+                SnapsToDevicePixels = true
+             
+            }
         }
 
         private void txtBox_TextChanged(object sender, TextChangedEventArgs e)
