@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Ean13.Model;
 
 namespace Ean13
 {
@@ -13,5 +14,6 @@ namespace Ean13
     /// </summary>
     public partial class App : Application
     {
+        public static BarcodeDBEntities DB = new BarcodeDBEntities();
     }
 }

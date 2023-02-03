@@ -18,7 +18,8 @@
                     <Setter Property="Height" Value="35"/>
                 </Style>
             </StackPanel.Resources>
-            <TextBox x:Name="txtBox"
+            <StackPanel Margin="0 20">
+                <TextBox x:Name="txtBox"
                      HorizontalAlignment="Center"
                      Background="LightBlue"
                      TextWrapping="Wrap"
@@ -26,7 +27,6 @@
                      Width="300" Height="40"
                      HorizontalContentAlignment="Center"
                      VerticalContentAlignment="Center"
-                     Margin="0 40 0 60"
                      FontSize="15"
                      FontWeight="DemiBold"
                      SpellCheck.IsEnabled="True" 
@@ -34,9 +34,24 @@
                      MaxLength="13"
                      PreviewKeyDown="txtBox_PreviewKeyDown"
                      PreviewTextInput="txtBox_PreviewTextInput"/>
+                <ComboBox x:Name="CBBarcode" 
+                          Width="300" Height="40"
+                          FontWeight="DemiBold"
+                          FontSize="15"
+                          HorizontalContentAlignment="Center"
+                          VerticalContentAlignment="Center"
+                          DisplayMemberPath="Number"
+                          SelectedItem="{Binding Barcode}"
+                          SelectionChanged="CBBarcode_SelectionChanged"/>
+                <Button x:Name="BCheck"
+                        Content="Проверить"
+                        Width="100"
+                        Height="30"
+                        Click="BCheck_Click"/>
+            </StackPanel>
             <Border Height="252" Width="349"
-                BorderBrush="Black"
-                BorderThickness="1">
+                    BorderBrush="Black"
+                    BorderThickness="1">
                 <InkCanvas x:Name="barcodeCan"
                        Height="250" Width="347"
                        Background="White"

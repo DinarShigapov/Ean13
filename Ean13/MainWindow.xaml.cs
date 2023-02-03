@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Ean13.Model;
 
 namespace Ean13
 {
@@ -31,6 +32,7 @@ namespace Ean13
         public MainWindow()
         {
             InitializeComponent();
+            CBBarcode.ItemsSource = App.DB.Barcode.ToList();
             FillDict();
             Load("0000000000000");
         }
@@ -189,8 +191,8 @@ namespace Ean13
             rect3.Height = 222.0;
 
             Rectangle rect4 = copyRec(rect3);
-            rect3.Margin = new Thickness(rect4.Margin.Left + 3.0, 10, 0, 0);
-            rect3.Width = 4.0;
+            rect4.Margin = new Thickness(rect4.Margin.Left + 3.0, 10, 0, 0);
+            rect4.Width = 4.0;
 
             barcodeCan.Children.Add(rect3);
             barcodeCan.Children.Add(rect4);
@@ -211,7 +213,7 @@ namespace Ean13
                 {
                     Height = 207.0,
                     Width = 3.0 * dictC[Convert.ToInt32(nums[i]) - 48][1],
-                    Margin = new Thickness(rec1.Margin.Left + localRec.Width, 10, 0, 0),
+                    Margin = new Thickness(rec1.Margin.Left + rec1.Width, 10, 0, 0),
                     Fill = System.Windows.Media.Brushes.White,
                     SnapsToDevicePixels = true
                 };
@@ -220,7 +222,7 @@ namespace Ean13
                 {
                     Height = 207.0,
                     Width = 3.0 * dictC[Convert.ToInt32(nums[i]) - 48][2],
-                    Margin = new Thickness(rec2.Margin.Left + localRec.Width, 10, 0, 0),
+                    Margin = new Thickness(rec2.Margin.Left + rec2.Width, 10, 0, 0),
                     Fill = System.Windows.Media.Brushes.Black,
                     SnapsToDevicePixels = true
                 };
@@ -229,7 +231,7 @@ namespace Ean13
                 {
                     Height = 207.0,
                     Width = 3.0 * dictC[Convert.ToInt32(nums[i]) - 48][3],
-                    Margin = new Thickness(rec3.Margin.Left + localRec.Width, 10, 0, 0),
+                    Margin = new Thickness(rec3.Margin.Left + rec3.Width, 10, 0, 0),
                     Fill = System.Windows.Media.Brushes.White,
                     SnapsToDevicePixels = true
                 };
@@ -303,6 +305,29 @@ namespace Ean13
         {
             if (Regex.IsMatch(e.Text, @"[0-9]") == false)
                 e.Handled = true;
+        }
+
+        private void BCheck_Click(object sender, RoutedEventArgs e)
+        {
+            char[] barcodeBuffer = txtBox.Text.ToCharArray();
+            int sumHonest = 0, sumOdd = 0; 
+
+            if (txtBox.Text.Length < 13)
+            {
+                MessageBox.Show("Выберите штрихкод или напишите свой");
+                return;
+            }
+
+
+            for (int i = 1; i < txtBox.Text.Length; i += 2)
+            {
+                sumHonest += barcodeBuffer[i];
+            }
+        }
+
+        private void CBBarcode_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            txtBox.Text = (CBBarcode.SelectedItem as Barcode).Number;
         }
     }
 }
