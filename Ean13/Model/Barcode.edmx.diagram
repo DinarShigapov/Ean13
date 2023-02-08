@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="136063f3c1034265a5564b2bd0056e09" Name="Diagram1">
-        <EntityTypeShape EntityType="BarcodeDBModel.Barcode" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="2a85621c81b341b6a51d4ae9fe5039ac" Name="Diagram1">
+        <EntityTypeShape EntityType="BarcodeModel.Barcode" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -32,7 +32,9 @@ namespace Ean13
         public MainWindow()
         {
             InitializeComponent();
-            CBBarcode.ItemsSource = App.DB.Barcode.ToList();
+            var listBardcode = App.DB.Barcode.ToList();
+            listBardcode.Insert(0, new Barcode() { Id = 0, Number = "0000000000000" });
+            CBBarcode.ItemsSource = listBardcode;
             FillDict();
             Load("0000000000000");
         }
@@ -310,7 +312,7 @@ namespace Ean13
         private void BCheck_Click(object sender, RoutedEventArgs e)
         {
             char[] barcodeBuffer = txtBox.Text.ToCharArray();
-            int sumHonest = 0, sumOdd = 0; 
+            int sumHonest = 0, sumOdd = 0, result = 0; 
 
             if (txtBox.Text.Length < 13)
             {
@@ -318,15 +320,29 @@ namespace Ean13
                 return;
             }
 
-
-            for (int i = 1; i < txtBox.Text.Length; i += 2)
+            for (int i = 0; i < txtBox.Text.Length - 1; i += 2)
             {
-                sumHonest += barcodeBuffer[i];
+                sumHonest += (int)Char.GetNumericValue(barcodeBuffer[i + 1]);
+                sumOdd += (int)Char.GetNumericValue(barcodeBuffer[i]);
             }
+            result = 10 - ((sumHonest * 3 + sumOdd) % 10);
+
+            if (result == (int)Char.GetNumericValue(barcodeBuffer.Last()))
+                MessageBox.Show($"Код верный", "Ответ", MessageBoxButton.OK, MessageBoxImage.Information);
+            else
+                MessageBox.Show($"Код неверный", "Ответ", MessageBoxButton.OK, MessageBoxImage.Error);
+
+
         }
 
         private void CBBarcode_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (CBBarcode.SelectedItem == null)
+            {
+                CBBarcode.SelectedIndex = 0;
+                return;
+            }
+                
             txtBox.Text = (CBBarcode.SelectedItem as Barcode).Number;
         }
     }

@@ -14,6 +14,6 @@ namespace Ean13
     /// </summary>
     public partial class App : Application
     {
-        public static BarcodeDBEntities DB = new BarcodeDBEntities();
+        public static BarcodeEntities DB = new BarcodeEntities();
     }
 }

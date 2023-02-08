@@ -5,9 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ean13"
         mc:Ignorable="d"
-        Title="EAN-13" Height="450" Width="800">
+        Title="EAN-13" 
+        Height="450" Width="800"
+        MinWidth="380" MaxWidth="750"
+        MinHeight="450" MaxHeight="500" 
+        WindowStartupLocation="CenterScreen">
     <Grid>
-        <StackPanel Background="White">
+        <StackPanel Background="White"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
             <StackPanel.Resources>
                 <Style x:Key="ButtonStyle" TargetType="Button">
                     <Setter Property="Background" Value="#FF94DAFF"/>
@@ -20,20 +26,18 @@
             </StackPanel.Resources>
             <StackPanel Margin="0 20">
                 <TextBox x:Name="txtBox"
-                     HorizontalAlignment="Center"
-                     Background="LightBlue"
-                     TextWrapping="Wrap"
-                     VerticalAlignment="Top"
-                     Width="300" Height="40"
-                     HorizontalContentAlignment="Center"
-                     VerticalContentAlignment="Center"
-                     FontSize="15"
-                     FontWeight="DemiBold"
-                     SpellCheck.IsEnabled="True" 
-                     TextChanged="txtBox_TextChanged"
-                     MaxLength="13"
-                     PreviewKeyDown="txtBox_PreviewKeyDown"
-                     PreviewTextInput="txtBox_PreviewTextInput"/>
+                         Background="LightBlue"
+                         TextWrapping="Wrap"
+                         Width="300" Height="40"
+                         HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         FontSize="15"
+                         FontWeight="DemiBold"
+                         SpellCheck.IsEnabled="True" 
+                         TextChanged="txtBox_TextChanged"
+                         MaxLength="13"
+                         PreviewKeyDown="txtBox_PreviewKeyDown"
+                         PreviewTextInput="txtBox_PreviewTextInput"/>
                 <ComboBox x:Name="CBBarcode" 
                           Width="300" Height="40"
                           FontWeight="DemiBold"
@@ -42,7 +46,8 @@
                           VerticalContentAlignment="Center"
                           DisplayMemberPath="Number"
                           SelectedItem="{Binding Barcode}"
-                          SelectionChanged="CBBarcode_SelectionChanged"/>
+                          SelectionChanged="CBBarcode_SelectionChanged"
+                          SelectedIndex="0"/>
                 <Button x:Name="BCheck"
                         Content="Проверить"
                         Width="100"
