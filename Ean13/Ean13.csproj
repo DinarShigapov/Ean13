@@ -78,23 +78,23 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Barcode.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Barcode.Context.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\Barcode.cs">
-      <DependentUpon>Barcode.tt</DependentUpon>
+      <DependentUpon>BarcodeDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Barcode.Designer.cs">
+    <Compile Include="Model\BarcodeDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Barcode.edmx</DependentUpon>
+      <DependentUpon>BarcodeDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Barcode1.cs">
+    <Compile Include="Model\BarcodeDB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Barcode.tt</DependentUpon>
+      <DependentUpon>BarcodeDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\BarcodeDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BarcodeDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -113,12 +113,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\Barcode.edmx">
+    <EntityDeploy Include="Model\BarcodeDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Barcode.Designer.cs</LastGenOutput>
+      <LastGenOutput>BarcodeDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\Barcode.edmx.diagram">
-      <DependentUpon>Barcode.edmx</DependentUpon>
+    <None Include="Model\BarcodeDB.edmx.diagram">
+      <DependentUpon>BarcodeDB.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -133,15 +133,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\Barcode.Context.tt">
+    <Content Include="Model\BarcodeDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Barcode.edmx</DependentUpon>
-      <LastGenOutput>Barcode.Context.cs</LastGenOutput>
+      <DependentUpon>BarcodeDB.edmx</DependentUpon>
+      <LastGenOutput>BarcodeDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\Barcode.tt">
+    <Content Include="Model\BarcodeDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Barcode.edmx</DependentUpon>
-      <LastGenOutput>Barcode1.cs</LastGenOutput>
+      <DependentUpon>BarcodeDB.edmx</DependentUpon>
+      <LastGenOutput>BarcodeDB.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

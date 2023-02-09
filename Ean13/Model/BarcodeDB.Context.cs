@@ -13,10 +13,10 @@ namespace Ean13.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BarcodeEntities : DbContext
+    public partial class BarcodeDBEntities : DbContext
     {
-        public BarcodeEntities()
-            : base("name=BarcodeEntities")
+        public BarcodeDBEntities()
+            : base("name=BarcodeDBEntities")
         {
         }
     
