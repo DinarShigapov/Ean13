@@ -316,7 +316,7 @@ namespace Ean13
 
             if (txtBox.Text.Length < 13)
             {
-                MessageBox.Show("Выберите штрихкод или напишите свой");
+                MessageBox.Show("Выберите штрихкод или запишите свой");
                 return;
             }
 
@@ -331,8 +331,6 @@ namespace Ean13
                 MessageBox.Show($"Код верный", "Ответ", MessageBoxButton.OK, MessageBoxImage.Information);
             else
                 MessageBox.Show($"Код неверный", "Ответ", MessageBoxButton.OK, MessageBoxImage.Error);
-
-
         }
 
         private void CBBarcode_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -342,7 +340,6 @@ namespace Ean13
                 CBBarcode.SelectedIndex = 0;
                 return;
             }
-                
             txtBox.Text = (CBBarcode.SelectedItem as Barcode).Number;
         }
     }
